@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OO스테이 — HGJS 스튜디오</title>
+<meta name="description" content="인테리어촬영 · 공간 화보 24컷.">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hdr" id="hdr">
+  <a class="hdr__logo" href="index.html">HGJS 스튜디오</a>
+  <button class="hdr__menu" type="button" aria-expanded="false" aria-controls="nav">메뉴</button>
+</header>
+
+<!-- ══ 전체 화면 메뉴 ══ -->
+<nav class="nav" id="nav" aria-label="주요 메뉴" aria-hidden="true">
+  <ul class="nav__list">
+    <li><a class="nav__link" href="index.html">홈</a></li>
+    <li><a class="nav__link" href="portfolio.html">포트폴리오 <span>작업 보기</span></a></li>
+    <li><a class="nav__link" href="calendar.html">예약 현황 <span>가능한 날짜</span></a></li>
+    <li><a class="nav__link" href="contact.html">컨택트 <span>연락 · 자주 묻는 질문</span></a></li>
+    <li><a class="nav__link" href="inquiry.html">문의하기 <span>견적 요청</span></a></li>
+  </ul>
+  <div class="nav__foot">
+    <a href="mailto:hello@example.com">hello@example.com</a>
+    <a href="tel:01000000000">010-0000-0000</a>
+    <a href="#">Instagram</a>
+    <a href="#">카카오톡</a>
+  </div>
+</nav>
+
+<!-- ══ 카테고리 이동 — 사진 다 보고 다른 분야로 바로 넘어가게 ══ -->
+<nav class="wrap" style="padding-top:clamp(96px,14vh,140px)" aria-label="촬영 분야">
+  <ul class="filters reveal" style="margin:0">
+    <li><a class="chip" href="portfolio.html">전체</a></li>
+    <li><a class="chip" href="portfolio.html?cat=제품">제품촬영</a></li>
+    <li><a class="chip" href="portfolio.html?cat=메뉴">메뉴촬영</a></li>
+    <li><a class="chip" href="portfolio.html?cat=홍보">홍보촬영</a></li>
+    <li><a class="chip" href="portfolio.html?cat=인테리어" aria-current="page">인테리어촬영</a></li>
+    <li><a class="chip" href="portfolio.html?cat=행사">행사촬영</a></li>
+  </ul>
+</nav>
+
+<!-- ══ 히어로 — 카테고리 · 프로젝트명 · 촬영 정보 ══ -->
+<section class="hero hero--page" style="padding-top:clamp(40px,6vh,72px)">
+  <h2 class="t-label reveal" style="margin-bottom:16px">인테리어촬영</h2>
+  <h1 class="t-hero reveal" data-delay="1">OO스테이</h1>
+
+  <!-- 촬영 정보 — 무엇을 어디까지 했는지. 신뢰가 여기서 쌓임 -->
+  <dl class="meta reveal" data-delay="2">
+    <div class="meta__row"><dt>클라이언트</dt><dd>OO스테이</dd></div>
+    <div class="meta__row"><dt>촬영</dt><dd>공간 화보</dd></div>
+    <div class="meta__row"><dt>결과물</dt><dd>24컷</dd></div>
+    <div class="meta__row"><dt>기간</dt><dd>반나절 촬영 · 보정 5일</dd></div>
+    <div class="meta__row"><dt>촬영일</dt><dd>2026. 05</dd></div>
+  </dl>
+</section>
+
+<!-- ══ 대표 이미지 — 풀블리드 ══ -->
+<!-- 사진 넣는 법: <div class="bleed__img"><img src="경로" alt="설명" width="2000" height="1125"></div> -->
+<div class="bleed">
+  <div class="bleed__img"><img src="images/project-cover.jpg" alt="OO스테이 인테리어촬영 대표 이미지" width="2000" height="1125" onerror="this.style.display='none'"></div>
+</div>
+
+<!-- ══ 촬영 노트 — 짧게. 사진이 주인공 ══ -->
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="col-half">
+      <h2 class="t-label reveal">촬영 노트</h2>
+      <p class="t-sub reveal" data-delay="1" style="margin-top:14px;line-height:1.85">
+        오후 네 시의 빛이 들어오는 시간에 맞춰 찍었습니다.
+        조명을 세우는 대신 창을 열고 기다리는 쪽을 택했고,
+        가구 위치는 거의 건드리지 않았습니다.
+        공간을 예쁘게 꾸미기보다 실제로 머물 때의 인상이 남기를 바랐습니다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 사진 ══
+     .shots__one — 한 장 크게 / .shots__duo — 두 장 나란히
+     넣는 법: <div class="shots__one"><img src="경로" alt="설명" loading="lazy" width="1600" height="1067"></div>
+     aspect-ratio는 사진 넣기 전 임시값. 실제 사진을 넣으면 원본 비율을 따라감. -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="shots">
+      <div class="shots__one reveal" style="aspect-ratio:3/2"><img src="images/project-01.jpg" alt="OO스테이 인테리어촬영" width="1600" height="1067" loading="lazy" onerror="this.style.display='none'"></div>
+
+      <div class="shots__duo">
+        <div class="reveal" style="aspect-ratio:4/5"><img src="images/project-02.jpg" alt="OO스테이 인테리어촬영" width="1600" height="1067" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="reveal" data-delay="1" style="aspect-ratio:4/5"><img src="images/project-03.jpg" alt="OO스테이 인테리어촬영" width="1600" height="1067" loading="lazy" onerror="this.style.display='none'"></div>
+      </div>
+
+      <div class="shots__one reveal" style="aspect-ratio:16/9"><img src="images/project-04.jpg" alt="OO스테이 인테리어촬영" width="1600" height="1067" loading="lazy" onerror="this.style.display='none'"></div>
+
+      <div class="shots__duo">
+        <div class="reveal" style="aspect-ratio:1/1"><img src="images/project-05.jpg" alt="OO스테이 인테리어촬영" width="1600" height="1067" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="reveal" data-delay="1" style="aspect-ratio:1/1"><img src="images/project-06.jpg" alt="OO스테이 인테리어촬영" width="1600" height="1067" loading="lazy" onerror="this.style.display='none'"></div>
+      </div>
+
+      <div class="shots__one reveal" style="aspect-ratio:3/2"><img src="images/project-07.jpg" alt="OO스테이 인테리어촬영" width="1600" height="1067" loading="lazy" onerror="this.style.display='none'"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 이전 / 다음 ══ -->
+<section class="wrap">
+  <nav class="pager" aria-label="다른 프로젝트">
+    <a class="pager__item" href="project.html">
+      <span class="pager__arw" aria-hidden="true">∧</span>
+      <span class="pager__dir">이전</span>
+      <span class="t-item">OO베이커리</span>
+    </a>
+    <a class="pager__item" href="project.html">
+      <span class="pager__arw" aria-hidden="true">∨</span>
+      <span class="pager__dir">다음</span>
+      <span class="t-item">OO브랜드 캘린더</span>
+    </a>
+  </nav>
+  <div style="margin-top:28px">
+    <a class="btn" href="portfolio.html" style="background:transparent;color:var(--ink);border:1px solid var(--line)">목록</a>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="section">
+  <div class="wrap">
+    <div class="col-half">
+      <h2 class="t-label reveal">문의</h2>
+      <p class="t-prop reveal" data-delay="1">비슷한 걸<br>찍고 싶다면.</p>
+      <p class="t-sub reveal" data-delay="2" style="margin-top:18px">
+        뭘 찍을지는 같이 정하면 됩니다. 영업일 1일 내 회신.
+      </p>
+      <div class="reveal" data-delay="3" style="margin-top:26px">
+        <a class="btn" href="inquiry.html">문의하기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="ftr__cols">
+    <div>
+      <p>일 의뢰</p>
+      <p class="t-sub">hello@example.com</p>
+    </div>
+    <div>
+      <p><a href="portfolio.html">포트폴리오</a></p>
+      <p><a href="contact.html">컨택트</a></p>
+      <p><a href="inquiry.html">문의하기</a></p>
+      <p><a href="calendar.html">예약 현황</a></p>
+    </div>
+    <div>
+      <p>Instagram</p>
+      <p>카카오톡 상담</p>
+    </div>
+  </div>
+  <div class="ftr__btm">
+    <span>© 2026 HGJS 스튜디오</span>
+    <a href="privacy.html">개인정보처리방침</a>
+  </div>
+</footer>
+
+<div class="dock">
+  <a class="kakao" href="#" aria-label="카카오톡으로 상담하기">카카오톡 상담</a>
+  <button class="totop" id="totop" type="button" aria-label="맨 위로">↑</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
