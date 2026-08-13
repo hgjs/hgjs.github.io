@@ -45,9 +45,11 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
 
-/* ---------- reveal ---------- */
-.reveal{opacity:0;transform:translateY(64px) scale(.97);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
-.reveal.is-in{opacity:1;transform:none}
+/* ---------- reveal ----------
+   스크롤 위치에 따라 app.js가 opacity/transform을 매 프레임 직접 계산해서 넣어줍니다
+   (사파리 호환을 위해 CSS transition 대신 JS로 직접 처리). 아래는 JS가 실행되기
+   전(로딩 순간) 잠깐 보이는 깜빡임을 막기 위한 초기값일 뿐입니다. ---------- */
+.reveal{opacity:0;transform:translateY(48px) scale(.97)}
 
 /* ---------- header (항상 노출되는 심플 내비) ---------- */
 .hdr{
