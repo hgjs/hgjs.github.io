@@ -70,14 +70,23 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   .hdr__nav a{font-size:12px}
 }
 
-/* ---------- home: statement line ---------- */
-.statement{padding:28px var(--pad) 0;text-align:center}
-.statement p{
-  font-size:clamp(13px,1.6vw,16px);
+/* ---------- home: statement (메인 문장 + 짧은 자기소개) ---------- */
+.statement{padding:40px var(--pad) 0;text-align:center}
+.statement__lead{
+  font-size:clamp(24px,4vw,44px);
+  line-height:1.3;
+  letter-spacing:-.01em;
+  max-width:20ch;
+  margin:0 auto 18px;
+}
+.statement__body{
+  font-size:clamp(13px,1.6vw,15px);
   color:var(--muted);
+  line-height:1.7;
   letter-spacing:.01em;
-  max-width:52ch;
+  max-width:46ch;
   margin:0 auto;
+  white-space:pre-line;
 }
 
 /* ---------- home: main visual ---------- */
@@ -94,36 +103,31 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .hero-main[data-hero="video"] img{display:none}
 @media (max-width:640px){.hero-main{aspect-ratio:3/4}}
 
-/* ---------- home: curated grid (3열, 세로 비율을 섞어서 다이나믹하게)
-   ※ 예전엔 CSS 컬럼(매스너리) 방식이었는데 사파리에서 사진이 겹치거나
-   클릭이 엉뚱한 곳으로 가는 버그가 있어서 CSS 그리드 방식으로 교체했습니다. ---------- */
+/* ---------- home: curated grid (진짜 매스너리, 사파리 안전)
+   ※ 예전 CSS 컬럼(columns:) 방식은 사파리에서 사진이 겹치거나 클릭이 엉뚱한 곳으로
+   가는 버그가 있었고, 그 다음에 썼던 CSS 그리드(3열 표)는 클릭은 안전하지만
+   줄이 딱 맞춰져서 다이나믹한 느낌이 사라졌습니다. 그래서 app.js가 사진들을
+   3개의 세로 컬럼(.curated__col)으로 나눠 담고, 각 컬럼은 사진 원래 비율 그대로
+   쌓이는 방식으로 바꿨습니다 — 클릭도 안전하고 높이도 자연스럽게 들쭉날쭉해집니다. ---------- */
 .curated{padding:56px 0 80px}
-.curated__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);align-items:start}
-.curated__grid a{
+.curated__grid{display:flex;align-items:flex-start;gap:var(--gap)}
+.curated__col{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--gap)}
+.curated__col a{
   display:block;overflow:hidden;border-radius:var(--radius-sm);
 }
-.curated__grid img{
-  width:100%;height:100%;display:block;object-fit:cover;cursor:pointer;
+.curated__col img{
+  width:100%;height:auto;display:block;cursor:pointer;
   filter:saturate(.92) sepia(.02);
   -webkit-user-drag:none;user-select:none;
   transition:transform .8s var(--ease),filter .4s var(--ease);
 }
-.curated__grid a:hover img{transform:scale(1.05);filter:saturate(.4) sepia(.02) brightness(.85)}
-/* 8장 단위로 세로 비율을 크게 섞어서 반복 — 이 부분 숫자를 바꾸면 리듬이 바뀝니다 */
-.curated__grid a:nth-child(8n+1){aspect-ratio:2/3}
-.curated__grid a:nth-child(8n+2){aspect-ratio:4/3}
-.curated__grid a:nth-child(8n+3){aspect-ratio:1/1}
-.curated__grid a:nth-child(8n+4){aspect-ratio:3/5}
-.curated__grid a:nth-child(8n+5){aspect-ratio:5/6}
-.curated__grid a:nth-child(8n+6){aspect-ratio:1/1}
-.curated__grid a:nth-child(8n+7){aspect-ratio:4/5}
-.curated__grid a:nth-child(8n){aspect-ratio:2/3}
-@media (max-width:800px){.curated__grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:480px){.curated__grid{grid-template-columns:1fr}}
+.curated__col a:hover img{transform:scale(1.05);filter:saturate(.4) sepia(.02) brightness(.85)}
 
-/* ---------- page hero (WORK / ABOUT 공통 상단) ---------- */
+/* ---------- page hero (WORK 상단: 큰 제목 + 짧은 설명) ---------- */
 .pagehero{padding:64px var(--pad) 40px;text-align:left}
-.pagehero h1{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.pagehero__eyebrow{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.pagehero h1{font-size:clamp(28px,4.2vw,48px);letter-spacing:-.01em;margin-bottom:18px}
+.pagehero__body{font-size:clamp(13px,1.6vw,15px);color:var(--muted);line-height:1.7;max-width:56ch}
 
 /* ---------- filters (WORK, 영문) ---------- */
 .filters{display:flex;gap:22px;flex-wrap:wrap;padding:0 var(--pad) 32px}
