@@ -14,11 +14,11 @@
   --card:#EFEEEB;
   --radius-sm:4px;
   --radius-pill:96px;
-  --maxw:2400px;
+  --maxw:1900px;
   --pad:24px;
   --gap:16px;
   --ff:'PretendardVariable','Pretendard',-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif;
-  --dur:.6s;
+  --dur:.9s;
   --ease:cubic-bezier(.16,1,.3,1);
 }
 
@@ -46,7 +46,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 }
 
 /* ---------- reveal ---------- */
-.reveal{opacity:0;transform:translateY(14px);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.reveal{opacity:0;transform:translateY(64px) scale(.97);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
 .reveal.is-in{opacity:1;transform:none}
 
 /* ---------- header (항상 노출되는 심플 내비) ---------- */
@@ -80,7 +80,13 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
 /* ---------- home: main visual ---------- */
 .hero-main{margin-top:24px;position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--card)}
-.hero-main .hero-media{width:100%;height:100%;object-fit:cover;filter:saturate(.92) sepia(.02)}
+.hero-main .hero-link{display:block;width:100%;height:100%}
+.hero-main .hero-media{
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(.92) sepia(.02);
+  transition:transform .8s var(--ease),filter .4s var(--ease);
+}
+.hero-main .hero-link:hover .hero-media{transform:scale(1.03);filter:saturate(.4) sepia(.02) brightness(.85)}
 .hero-main[data-hero="image"] video,
 .hero-main[data-hero="video"] img{display:none}
 @media (max-width:640px){.hero-main{aspect-ratio:3/4}}
@@ -88,27 +94,32 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 /* ---------- home: curated grid (3열 매스너리, 세로 비율을 섞어서 다이나믹하게) ---------- */
 .curated{padding:56px 0 80px}
 .curated__grid{columns:3 320px;column-gap:var(--gap)}
-.curated__grid img{
-  width:100%;display:block;margin-bottom:var(--gap);
-  break-inside:avoid;object-fit:cover;
-  filter:saturate(.92) sepia(.02);border-radius:var(--radius-sm);
+.curated__grid a{
+  display:block;margin-bottom:var(--gap);
+  break-inside:avoid;overflow:hidden;border-radius:var(--radius-sm);
 }
+.curated__grid img{
+  width:100%;height:100%;display:block;object-fit:cover;cursor:pointer;
+  filter:saturate(.92) sepia(.02);
+  transition:transform .8s var(--ease),filter .4s var(--ease);
+}
+.curated__grid a:hover img{transform:scale(1.05);filter:saturate(.4) sepia(.02) brightness(.85)}
 /* 8장 단위로 세로 비율을 크게 섞어서 반복 — 이 부분 숫자를 바꾸면 리듬이 바뀝니다 */
-.curated__grid img:nth-child(8n+1){aspect-ratio:2/3}
-.curated__grid img:nth-child(8n+2){aspect-ratio:4/3}
-.curated__grid img:nth-child(8n+3){aspect-ratio:1/1}
-.curated__grid img:nth-child(8n+4){aspect-ratio:3/5}
-.curated__grid img:nth-child(8n+5){aspect-ratio:5/6}
-.curated__grid img:nth-child(8n+6){aspect-ratio:1/1}
-.curated__grid img:nth-child(8n+7){aspect-ratio:4/5}
-.curated__grid img:nth-child(8n){aspect-ratio:2/3}
+.curated__grid a:nth-child(8n+1){aspect-ratio:2/3}
+.curated__grid a:nth-child(8n+2){aspect-ratio:4/3}
+.curated__grid a:nth-child(8n+3){aspect-ratio:1/1}
+.curated__grid a:nth-child(8n+4){aspect-ratio:3/5}
+.curated__grid a:nth-child(8n+5){aspect-ratio:5/6}
+.curated__grid a:nth-child(8n+6){aspect-ratio:1/1}
+.curated__grid a:nth-child(8n+7){aspect-ratio:4/5}
+.curated__grid a:nth-child(8n){aspect-ratio:2/3}
 /* 각 컬럼 시작점을 다르게 밀어서 첫 줄부터 어긋나 보이게 */
-.curated__grid img:nth-child(3n+2){margin-top:36px}
-.curated__grid img:nth-child(3n+3){margin-top:72px}
+.curated__grid a:nth-child(3n+2){margin-top:36px}
+.curated__grid a:nth-child(3n+3){margin-top:72px}
 @media (max-width:800px){.curated__grid{columns:2 260px}}
 @media (max-width:480px){.curated__grid{columns:1 100%}}
 
-/* ---------- page hero (WORK / SERVICES / ABOUT 공통 상단) ---------- */
+/* ---------- page hero (WORK / ABOUT 공통 상단) ---------- */
 .pagehero{padding:64px var(--pad) 40px;text-align:left}
 .pagehero h1{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
 
@@ -146,15 +157,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 @media (max-width:640px){.shots{grid-template-columns:1fr}}
 .pager{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:space-between;padding:32px var(--pad) 80px;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
 
-/* ---------- services ---------- */
-.svc-list{padding:0 var(--pad) 100px}
-.svc-list li{border-top:1px solid var(--line)}
-.svc-list li:last-child{border-bottom:1px solid var(--line)}
-.svc-list span{
-  display:block;padding:28px 0;
-  font-size:clamp(18px,2.6vw,26px);letter-spacing:.01em;text-transform:uppercase;
-}
-
 /* ---------- about / contact ---------- */
 .about{padding:64px var(--pad) 100px;max-width:640px;margin:0 auto;text-align:center}
 .about__statement{font-size:clamp(20px,3vw,28px);line-height:1.4;letter-spacing:-.01em;margin-bottom:28px}
@@ -176,6 +178,34 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   opacity:0;pointer-events:none;transition:opacity .3s;font-size:12px;
 }
 .totop.is-visible{opacity:1;pointer-events:auto}
+
+/* ---------- lightbox (홈 사진·영상 팝업) ---------- */
+.lightbox{
+  position:fixed;inset:0;z-index:400;background:#000;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .3s var(--ease);
+}
+.lightbox.is-open{opacity:1;pointer-events:auto}
+.lightbox__stage{max-width:88vw;max-height:88vh;display:flex;align-items:center;justify-content:center}
+.lightbox__stage img{max-width:88vw;max-height:88vh;width:auto;height:auto;object-fit:contain;display:block}
+.lightbox__stage iframe{width:min(88vw,1000px);height:min(56vw,562px);border:0}
+.lightbox__close,.lightbox__nav{
+  position:absolute;color:#fff;width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+  transition:opacity .2s;
+}
+.lightbox__close:hover,.lightbox__nav:hover{opacity:.6}
+.lightbox__close{top:24px;right:24px}
+.lightbox__nav{top:50%;transform:translateY(-50%);font-size:24px}
+.lightbox__prev{left:16px}
+.lightbox__next{right:16px}
+.lightbox__count{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.55);font-size:12px;letter-spacing:.05em}
+@media (max-width:640px){
+  .lightbox__nav{width:36px;height:36px;font-size:18px}
+  .lightbox__prev{left:6px}
+  .lightbox__next{right:6px}
+  .lightbox__close{width:36px;height:36px;top:12px;right:12px}
+}
 
 @media (max-width:640px){
   .curated{padding:40px 0 56px}
