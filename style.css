@@ -84,6 +84,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .hero-main .hero-media{
   width:100%;height:100%;object-fit:cover;
   filter:saturate(.92) sepia(.02);
+  -webkit-user-drag:none;user-select:none;
   transition:transform .8s var(--ease),filter .4s var(--ease);
 }
 .hero-main .hero-link:hover .hero-media{transform:scale(1.03);filter:saturate(.4) sepia(.02) brightness(.85)}
@@ -91,16 +92,18 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .hero-main[data-hero="video"] img{display:none}
 @media (max-width:640px){.hero-main{aspect-ratio:3/4}}
 
-/* ---------- home: curated grid (3열 매스너리, 세로 비율을 섞어서 다이나믹하게) ---------- */
+/* ---------- home: curated grid (3열, 세로 비율을 섞어서 다이나믹하게)
+   ※ 예전엔 CSS 컬럼(매스너리) 방식이었는데 사파리에서 사진이 겹치거나
+   클릭이 엉뚱한 곳으로 가는 버그가 있어서 CSS 그리드 방식으로 교체했습니다. ---------- */
 .curated{padding:56px 0 80px}
-.curated__grid{columns:3 320px;column-gap:var(--gap)}
+.curated__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);align-items:start}
 .curated__grid a{
-  display:block;margin-bottom:var(--gap);
-  break-inside:avoid;overflow:hidden;border-radius:var(--radius-sm);
+  display:block;overflow:hidden;border-radius:var(--radius-sm);
 }
 .curated__grid img{
   width:100%;height:100%;display:block;object-fit:cover;cursor:pointer;
   filter:saturate(.92) sepia(.02);
+  -webkit-user-drag:none;user-select:none;
   transition:transform .8s var(--ease),filter .4s var(--ease);
 }
 .curated__grid a:hover img{transform:scale(1.05);filter:saturate(.4) sepia(.02) brightness(.85)}
@@ -113,11 +116,8 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .curated__grid a:nth-child(8n+6){aspect-ratio:1/1}
 .curated__grid a:nth-child(8n+7){aspect-ratio:4/5}
 .curated__grid a:nth-child(8n){aspect-ratio:2/3}
-/* 각 컬럼 시작점을 다르게 밀어서 첫 줄부터 어긋나 보이게 */
-.curated__grid a:nth-child(3n+2){margin-top:36px}
-.curated__grid a:nth-child(3n+3){margin-top:72px}
-@media (max-width:800px){.curated__grid{columns:2 260px}}
-@media (max-width:480px){.curated__grid{columns:1 100%}}
+@media (max-width:800px){.curated__grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.curated__grid{grid-template-columns:1fr}}
 
 /* ---------- page hero (WORK / ABOUT 공통 상단) ---------- */
 .pagehero{padding:64px var(--pad) 40px;text-align:left}
