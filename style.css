@@ -16,7 +16,7 @@
   --radius-pill:96px;
   --maxw:1900px;
   --pad:24px;
-  --gap:16px;
+  --gap:2px;
   --ff:'PretendardVariable','Pretendard',-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif;
   --dur:.9s;
   --ease:cubic-bezier(.16,1,.3,1);
@@ -46,17 +46,22 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 }
 
 /* ---------- reveal ----------
-   스크롤 위치에 따라 app.js가 opacity/transform을 매 프레임 직접 계산해서 넣어줍니다
-   (사파리 호환을 위해 CSS transition 대신 JS로 직접 처리). 아래는 JS가 실행되기
-   전(로딩 순간) 잠깐 보이는 깜빡임을 막기 위한 초기값일 뿐입니다. ---------- */
-.reveal{opacity:0;transform:translateY(48px) scale(.97)}
+   스크롤 위치에 따라 app.js가 opacity/transform을 매 프레임 직접 계산해서 넣어줍니다.
+   여기 있는 짧은 transition은 마우스 휠처럼 스크롤이 뚝뚝 끊겨 들어와도 화면엔
+   부드럽게 이어져 보이도록 살짝 보간해주는 용도입니다 (사파리에서도 안전). ---------- */
+.reveal{
+  opacity:0;transform:translateY(40px) scale(.98);
+  transition:opacity .2s linear,transform .2s linear;
+}
 
-/* ---------- header (항상 노출되는 심플 내비) ---------- */
+/* ---------- header (스크롤 내리면 숨고, 올리면 다시 보이는 심플 내비) ---------- */
 .hdr{
   position:sticky;top:0;left:0;right:0;z-index:100;
   background:rgba(245,245,244,.9);backdrop-filter:blur(8px);
   border-bottom:1px solid var(--line);
+  transition:transform .35s var(--ease);
 }
+.hdr.is-hidden{transform:translateY(-100%)}
 .hdr .wrap{
   display:flex;align-items:center;justify-content:space-between;
   padding:18px var(--pad);flex-wrap:wrap;gap:10px 24px;
@@ -123,14 +128,14 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 }
 .curated__col a:hover img{transform:scale(1.05);filter:saturate(.4) sepia(.02) brightness(.85)}
 
-/* ---------- page hero (WORK 상단: 큰 제목 + 짧은 설명) ---------- */
-.pagehero{padding:64px var(--pad) 40px;text-align:left}
-.pagehero__eyebrow{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+/* ---------- page hero (WORK 상단: 로고 이미지 + 큰 제목 + 짧은 설명, 전부 가운데 정렬) ---------- */
+.pagehero{padding:64px var(--pad) 40px;text-align:center}
+.pagehero__logo{max-width:220px;width:100%;height:auto;margin:0 auto 24px;display:block}
 .pagehero h1{font-size:clamp(28px,4.2vw,48px);letter-spacing:-.01em;margin-bottom:18px}
-.pagehero__body{font-size:clamp(13px,1.6vw,15px);color:var(--muted);line-height:1.7;max-width:56ch}
+.pagehero__body{font-size:clamp(13px,1.6vw,15px);color:var(--muted);line-height:1.7;max-width:56ch;margin:0 auto}
 
 /* ---------- filters (WORK, 영문) ---------- */
-.filters{display:flex;gap:22px;flex-wrap:wrap;padding:0 var(--pad) 32px}
+.filters{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;padding:0 var(--pad) 32px}
 .filters button{
   padding:0;border:none;background:none;border-radius:0;
   font-size:13px;letter-spacing:.03em;text-transform:uppercase;
@@ -162,6 +167,25 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 }
 @media (max-width:640px){.shots{grid-template-columns:1fr}}
 .pager{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:space-between;padding:32px var(--pad) 80px;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+
+/* ---------- work detail: 화면 좌우 중앙 화살표로 프로젝트 넘기기 ---------- */
+.detail-nav{
+  position:fixed;top:50%;transform:translateY(-50%);z-index:80;
+  width:48px;height:48px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--line-strong);background:rgba(245,245,244,.85);
+  backdrop-filter:blur(4px);
+  font-size:18px;color:var(--ink);
+  transition:opacity .2s,background .2s;
+}
+.detail-nav:hover{background:var(--bg);opacity:.7}
+.detail-nav--prev{left:20px}
+.detail-nav--next{right:20px}
+@media (max-width:640px){
+  .detail-nav{width:36px;height:36px;font-size:14px}
+  .detail-nav--prev{left:8px}
+  .detail-nav--next{right:8px}
+}
 
 /* ---------- about / contact ---------- */
 .about{padding:64px var(--pad) 100px;max-width:640px;margin:0 auto;text-align:center}
